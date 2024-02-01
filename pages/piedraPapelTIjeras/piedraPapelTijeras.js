@@ -18,13 +18,27 @@ export const paperRockScissors = [
 export let UserCount = localStorage.getItem("USER") || 0;
 export let CpuCount = localStorage.getItem("CPU") || 0;
 
+
+
 const containerGames = document.querySelector("#containerGames");
-const container = document.querySelector(".container")
+
+
+export const setContainers = () => {
+  const container = document.createElement("div");
+  container.className = "container"
+
+  containerGames.append(container)
+}
+
+
+
+
+
 
 export const printCounter = () => {
-    
+  const container = document.querySelector(".container")
     container.innerHTML = "";
-
+    setContainers()
     const divCounter = document.createElement("div");
     const user = document.createElement("p");
     const boxCounter = document.createElement("div");

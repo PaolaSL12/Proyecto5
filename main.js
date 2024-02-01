@@ -1,16 +1,15 @@
 import {
+
   PrintResetButton,
   printCounter,
-  printPaperRockScissors
+  printPaperRockScissors,
+  setContainers
 } from "./pages/piedraPapelTIjeras/piedraPapelTijeras";
 import "./style.css";
 
 const printheader = () => {
   const app = document.querySelector("#app");
   const containergames = document.querySelector("#containerGames");
-
-  const containercounter = document.createElement("div");
-  containercounter.id = "container";
 
   const header = document.createElement("header");
 
@@ -23,9 +22,11 @@ const printheader = () => {
   bingoButton.textContent = "Bingo";
 
   PPTButton.addEventListener("click", () => {
-    printCounter()
-    printPaperRockScissors()
-    PrintResetButton()
+    containergames.innerHTML= ""
+ setContainers();
+ printCounter();
+ printPaperRockScissors();
+ PrintResetButton()
   });
 
   header.append(PPTButton);
@@ -33,7 +34,6 @@ const printheader = () => {
   header.append(bingoButton);
 
   app.append(header);
-  containergames.appendChild(containercounter);
   app.append(containergames);
 };
 
