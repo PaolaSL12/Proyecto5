@@ -24,13 +24,18 @@ const containerGames = document.querySelector("#containerGames");
 
 
 export const setContainers = () => {
-  const container = document.createElement("div");
-  container.className = "container"
+  
+  const PPT = document.createElement("div");
+  PPT.id = "PPT";
 
-  containerGames.append(container)
+  const containerGame = document.createElement("div");
+  containerGame.className = "container"
+
+  PPT.append(containerGame)
+  containerGames.append(PPT)
 }
 
-
+const PPT = document.querySelector("#PPT")
 
 
 
@@ -38,7 +43,6 @@ export const setContainers = () => {
 export const printCounter = () => {
   const container = document.querySelector(".container")
     container.innerHTML = "";
-    setContainers()
     const divCounter = document.createElement("div");
     const user = document.createElement("p");
     const boxCounter = document.createElement("div");
@@ -93,9 +97,9 @@ export const printPaperRockScissors = () => {
   }
   divMessage.append(message);
   console.log(message);
-  containerGames.append(divSelection);
-  containerGames.append(divMessage);
-  containerGames.append(divContainer);
+  document.querySelector("#PPT").append(divSelection);
+  document.querySelector("#PPT").append(divMessage);
+  document.querySelector("#PPT").append(divContainer);
 };
 
 export const PrintResetButton = () => {
@@ -116,7 +120,7 @@ export const PrintResetButton = () => {
   });
 
   divButton.append(resetButton);
-  document.querySelector("#containerGames").append(divButton);
+  document.querySelector("#PPT").append(divButton);
 };
 
 export let GameFunction = (selection) => {
@@ -124,7 +128,7 @@ export let GameFunction = (selection) => {
   let cpuSelection = paperRockScissors[selectionCpu].name;
 
   const selectionContainer = document.querySelector(".selection");
-  console.log(selectionContainer);
+
   selectionContainer.innerHTML = "";
 
   const divselectionCpu = document.createElement("div");

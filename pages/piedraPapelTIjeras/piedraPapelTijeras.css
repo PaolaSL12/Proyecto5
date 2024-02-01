@@ -29,7 +29,7 @@
 }
 
 
-#containerGames {
+#PPT {
   width: 100%;
   height: 100svh;
   overflow: hidden;
@@ -70,6 +70,7 @@
 }
 
 .message {
+  margin: auto;
   max-width: 450px;
   height: 20svh;
   display: flex;
@@ -135,7 +136,7 @@
 .selection {
   height: 15svh;
   display: flex;
-  justify-content:space-between;
+  justify-content:space-around;
 }
 .divselectionCpu {
   width: 100px;

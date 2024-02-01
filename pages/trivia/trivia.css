@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap");
+
+:root {
+  --t-primary-color: #d8dcd0;
+  --t-secondary-color: #c8c5bc;
+  --t-text-color: #1a170f;
+  --t-highlight-color-ligth: #832061;
+  --t-highlight-color-dark: #3c1742;
+  --t-background-color: var(--t-secondary-color);
+
+  --t-margin-s: 10px;
+  --t-margin-m: 20px;
+  --t-margin-l: 30px;
+  --t-margin-xl: 40px;
+
+  --t-padding-s: 10px;
+  --t-padding-m: 20px;
+  --t-padding-l: 30px;
+  --t-padding-xl: 40px;
+
+  --t-br: 10px;
+}
+
+#containerGame {
+  background-color: #9f9f9f;
+  background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--t-text-color);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  width: 95%;
+  margin: auto;
+  height: auto;
+}
+
+.containerCard {
+  width: 100%;
+  height: 345px;
+  border: 5px solid var(--t-highlight-color-ligth);
+  border-radius: var(--t-br);
+  background-color: var(--t-primary-color);
+}
+
+.divQuestion {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.containerCard > ul {
+  width: 90%;
+  height: 60%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.containerCard > ul > li {
+  width: 100%;
+  padding: var(--t-padding-s);
+  border: 3px solid var(--t-highlight-color-ligth);
+  border-radius: var(--t-br);
+  text-align: center;
+  margin: 5px 0;
+  background-color: #e3e2dd;
+  cursor: pointer;
+}
+
+.containerCard > ul > .selected {
+  background-color: #8320606f;
+}
+
+.containerButton {
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: 1 / -1;
+}
+
+.containerButton > button {
+  padding: var(--t-padding-s);
+  border-radius: var(--t-br);
+  background-color: #8320606f;
+  border: 3px solid var(--t-highlight-color-ligth);
+  font-weight: 600;
+}
+
+@media screen and (min-width: 700px) {
+  #containerGames {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+}

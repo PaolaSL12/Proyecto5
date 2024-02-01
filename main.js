@@ -1,10 +1,10 @@
 import {
-
   PrintResetButton,
   printCounter,
   printPaperRockScissors,
-  setContainers
+  setContainers,
 } from "./pages/piedraPapelTIjeras/piedraPapelTijeras";
+import { ComprobationButton, PrintEstructure } from "./pages/trivia/trivia";
 import "./style.css";
 
 const printheader = () => {
@@ -22,11 +22,18 @@ const printheader = () => {
   bingoButton.textContent = "Bingo";
 
   PPTButton.addEventListener("click", () => {
-    containergames.innerHTML= ""
- setContainers();
- printCounter();
- printPaperRockScissors();
- PrintResetButton()
+    containergames.innerHTML = "";
+    
+    setContainers();
+    printCounter();
+    printPaperRockScissors();
+    PrintResetButton();
+  });
+
+  triviaButton.addEventListener("click", () => {
+    containergames.innerHTML = "";
+    PrintEstructure();
+    ComprobationButton();
   });
 
   header.append(PPTButton);
