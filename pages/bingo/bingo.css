@@ -1,0 +1,294 @@
+@import url('https://fonts.googleapis.com/css2?family=Single+Day&display=swap');
+
+:root {
+  --b-primary-color: #DBE3E6;
+  --b-secondary-color: #EFF7DF;
+  --b-text-color: #443641;
+  --b-highlight-color-ligth: #0099b868;
+  --b-background-color: var(--b-primary-color);
+
+  --b-margin-s:10px;
+  --b-margin-m:20px;
+  --b-margin-l:30px;
+  --b-margin-xl:40px;
+
+  --b-padding-xs:5px;
+  --b-padding-s:10px;
+  --b-padding-m:20px;
+  --b-padding-l:30px;
+  --b-padding-xl:40px;
+
+  --b-br: 10px;
+  --b-br-round: 100%;
+}
+
+
+#bingo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--b-background-color);
+  font-family: 'Single Day', cursive;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  color: var(--b-text-color);
+}
+
+.startButton {
+    width: 100%;
+    height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.startButton > button {
+    font-size: 1.2em;
+    padding: var(--b-padding-s);
+    border-radius: var(--b-br);
+    background-color: var(--b-highlight-color-ligth);
+    cursor: pointer;
+}
+
+.none {
+    display: none;
+}
+
+.divSelectedNumber {
+    width: 100%;
+    height: 20svh;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.divNumber {
+    width: 90px;
+    height: 90px;
+    border-radius: var(--b-br-round);
+    background-color: var(--b-secondary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divNumber > p {
+   font-size: 2.5em;
+}
+
+.selected {
+    background-color: var(--b-highlight-color-ligth);
+}
+
+.divAllNumbers {
+    width: 100%;
+    height: 430svh;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 80px);
+    grid-template-rows:  repeat(auto-fit, 80px);;
+    gap: 20px;
+    justify-content: space-evenly;
+    padding: 0 var(--b-padding-m);
+}
+
+.divnumber {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--b-br-round);
+    background-color: var(--b-secondary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divnumber > p {
+    font-size: 1.5em;
+}
+
+.divAllNumbers > .selected {
+   background-color: var(--b-highlight-color-ligth);
+}
+
+.divPauseButton {
+    width: 100%;
+    height: 10svh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divPauseButton > button {
+    font-size: 1.2em;
+    padding: var(--b-padding-s);
+    margin: 0 var(--b-margin-s);
+    border-radius: var(--b-br);
+    background-color: var(--b-highlight-color-ligth);
+    cursor: pointer;
+}
+
+@media screen and (min-width: 240px) and (max-width: 298px) {
+    .divAllNumbers {
+        height: 712svh;
+    }
+}
+
+@media screen and (max-width: 299px) { 
+    .divPauseButton > button {
+        font-size: 0.7em;
+        padding: var(--b-padding-xs);
+    }
+
+    .divPauseButton {
+        height: 9svh;
+    }
+
+    .divAllNumbers {
+        height: 80svh;
+        grid-template-columns: repeat(auto-fit, 22px);
+        grid-template-rows:  repeat(auto-fit, 22px);;
+        gap: 8px;
+        justify-content: space-evenly;
+        padding: 0 var(--b-padding-m);
+    }
+
+    .divnumber > p {
+        font-size: 0.7em;
+    }
+
+    .divSelectedNumber {
+        height: 10svh;
+    }
+    
+    .divNumber {
+        width: 55px;
+        height: 55px;
+    }
+
+    .divNumber > p {
+        font-size: 1.5em;
+     }
+}
+
+@media screen and (min-width: 300px) and (max-width: 489px) { 
+    .divPauseButton > button {
+        font-size: 0.8em;
+        padding: var(--b-padding-xs);
+    }
+
+    .divPauseButton {
+        height: 9svh;
+    }
+
+    .divSelectedNumber {
+        height: 15svh;
+    }
+    
+    .divNumber {
+        width: 70px;
+        height: 70px;
+    }
+
+    .divAllNumbers {
+        height: 75svh;
+        grid-template-columns: repeat(auto-fit, 28px);
+        grid-template-rows:  repeat(auto-fit, 28px);;
+        gap: 10px;
+        justify-content: space-evenly;
+        padding: 0 var(--b-padding-m);
+    }
+
+    .divnumber > p {
+        font-size: 0.9em;
+    }
+    
+}
+
+@media screen and (min-width: 490px) and (max-width: 579px) {
+    .divPauseButton > button {
+        font-size: 1em;
+        padding: var(--b-padding-xs);
+    }
+
+}
+
+@media screen and (min-width: 580px) and (max-width: 849px) {
+    .divPauseButton > button {
+        font-size: 1em;
+        padding: var(--b-padding-xs);
+    }
+}
+
+
+
+@media screen and (min-width: 320px) and (max-width: 419px) {
+    .divAllNumbers {
+        height: 475svh;
+    }
+}
+
+
+@media screen and (min-width: 420px) and (max-width: 519px) {
+    .divAllNumbers {
+        height: 370svh;
+    }
+}
+
+
+@media screen and (min-width: 490px) and (max-width: 579px) {
+    .divAllNumbers {
+        height: 70svh;
+        grid-template-columns: repeat(auto-fit, 30px);
+        grid-template-rows:  repeat(auto-fit, 30px);;
+        gap: 18px;
+        justify-content: space-evenly;
+        padding: 0 var(--b-padding-m);
+    }
+
+    .divnumber > p {
+        font-size: 0.9em;
+    }
+}
+
+
+@media screen and (min-width: 580px) and (max-width: 849px) {
+    .divAllNumbers {
+        height: 70svh;
+        grid-template-columns: repeat(auto-fit, 35px);
+        grid-template-rows:  repeat(auto-fit, 35px);;
+        gap: 18px;
+        justify-content: space-evenly;
+        padding: 0 var(--b-padding-m);
+    }
+
+    .divnumber > p {
+        font-size: 1em;
+    }
+}
+
+@media screen and (min-width: 850px) and (max-width: 1199px) {
+    .divAllNumbers {
+        height: 70svh;
+        grid-template-columns: repeat(auto-fit, 45px);
+        grid-template-rows:  repeat(auto-fit, 45px);;
+        gap: 18px;
+    }
+    
+    .divnumber > p {
+        font-size: 1em;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+
+    .divAllNumbers {
+        width: 90%;
+        margin: auto;
+        height: 70svh;
+        grid-template-columns: repeat(auto-fit, 50px);
+        grid-template-rows:  repeat(auto-fit, 50px);
+    }
+}
+
+

@@ -1,3 +1,4 @@
+import { printStartButton, setContainersB } from "./pages/bingo/bingo";
 import {
   PrintResetButton,
   printCounter,
@@ -35,6 +36,12 @@ const printheader = () => {
     PrintEstructure();
     ComprobationButton();
   });
+
+  bingoButton.addEventListener("click", () => {
+    containergames.innerHTML = "";
+    setContainersB()
+    printStartButton()
+  })
 
   header.append(PPTButton);
   header.append(triviaButton);
