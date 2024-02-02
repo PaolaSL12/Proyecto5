@@ -96,7 +96,7 @@ export const printPaperRockScissors = () => {
     divContainer.append(divElement);
   }
   divMessage.append(message);
-  console.log(message);
+
   document.querySelector("#PPT").append(divSelection);
   document.querySelector("#PPT").append(divMessage);
   document.querySelector("#PPT").append(divContainer);

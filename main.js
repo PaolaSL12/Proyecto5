@@ -1,4 +1,4 @@
-import { printStartButton, setContainersB } from "./pages/bingo/bingo";
+import { printStartButton, resetGame, setContainersB, togglePause } from "./pages/bingo/bingo";
 import {
   PrintResetButton,
   printCounter,
@@ -12,11 +12,14 @@ const printheader = () => {
   const app = document.querySelector("#app");
   const containergames = document.querySelector("#containerGames");
 
+
   const header = document.createElement("header");
 
   const PPTButton = document.createElement("button");
   const triviaButton = document.createElement("button");
   const bingoButton = document.createElement("button");
+
+  bingoButton.id ="bin"
 
   PPTButton.textContent = "Piedra, Papel o Tijeras";
   triviaButton.textContent = "Trivia";
@@ -29,15 +32,18 @@ const printheader = () => {
     printCounter();
     printPaperRockScissors();
     PrintResetButton();
+    
   });
 
   triviaButton.addEventListener("click", () => {
-    containergames.innerHTML = "";
-    PrintEstructure();
-    ComprobationButton();
+      containergames.innerHTML = "";
+      PrintEstructure();
+      ComprobationButton();
+      
+ 
   });
 
-  bingoButton.addEventListener("click", () => {
+  bingoButton.addEventListener("click", (e) => {
     containergames.innerHTML = "";
     setContainersB()
     printStartButton()

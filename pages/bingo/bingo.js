@@ -1,3 +1,4 @@
+
 import "./bingo.css";
 
 export const bingoNumbers = [
@@ -140,8 +141,6 @@ export const printStartButton = () => {
       printAllNumbers();
       printButtonPuse();
       printRestartButton();
-  
-      
     });
   
     divStartButton.append(startButton);
@@ -168,109 +167,141 @@ export const printStartButton = () => {
 
 let paused = false;
 let reset = false;
+let timeoutId;
 
 export function togglePause() {
-    paused = !paused;
-    console.log("pausa");
+  paused = !paused;
 }
 
-
-export const SelectedNumber = async () => {
-  const selectedContainer = document.querySelector(".divNumber");
-
-  const synth = window.speechSynthesis;
-
-  if (selectedContainer) {
-    const randomNumbers = generateRandomNumbers();
-    const delay = 2000;
-
-    for (let i = 0; i < randomNumbers.length; i++) {
-
-      await new Promise((resolve) => setTimeout(resolve, delay));
-
-      while (paused) {
-        await new Promise((resolve) => setTimeout(resolve, 100));
-      }
-
-      selectedContainer.innerHTML = "";
-
-      const numberSelected = document.createElement("p");
-      const currentNumber = bingoNumbers[randomNumbers[i]];
-
-      const utterThis = new SpeechSynthesisUtterance(`${currentNumber}`);
-
-      synth.speak(utterThis);
-      numberSelected.textContent = currentNumber;
-      selectedContainer.append(numberSelected);
-
-      const allNumberContainers = document.querySelectorAll(".divAllNumbers .divnumber");
-
-      allNumberContainers.forEach((container) => {
-        const containerNumber = container.querySelector("p").textContent;
-        if (containerNumber === currentNumber) {
-          container.classList.add("selected");
-        }
-      });
+export function resetGame() {
+  reset = true;
+  clearTimeout(timeoutId); // Limpia el temporizador actual si existe
+  const intervalId = setInterval(() => {
+    const bingoContainer = document.querySelector("#bingo");
+    if (bingoContainer) {
+      bingoContainer.innerHTML = ""; // Limpia el contenido del contenedor
+      printSelectedNumber();
+      SelectedNumber();
+      printAllNumbers();
+      printButtonPuse();
+      printRestartButton();
+      reset = false;
+      clearInterval(intervalId); // Limpia el intervalo después de reiniciar
     }
-  }
+  }, 1000);
+}
+
+export const SelectedNumber = () => {
+  return new Promise((resolve, reject) => {
+    const selectedContainer = document.querySelector(".divNumber");
+    const synth = window.speechSynthesis;
+
+    if (selectedContainer) {
+      const randomNumbers = generateRandomNumbers();
+      const delay = 2500;
+
+      let i = 0;
+
+      const processNextNumber = async () => {
+        if (i < randomNumbers.length) {
+          await new Promise((innerResolve) => setTimeout(innerResolve, delay));
+
+          while (paused) {
+            await new Promise((innerResolve) => setTimeout(innerResolve, 100));
+          }
+
+          if (reset) {
+            reject("Juego reiniciado");
+            return;
+          }
+
+          selectedContainer.innerHTML = "";
+
+          const numberSelected = document.createElement("p");
+          const currentNumber = bingoNumbers[randomNumbers[i]];
+
+          const utterThis = new SpeechSynthesisUtterance(`${currentNumber}`);
+          synth.speak(utterThis);
+
+          numberSelected.textContent = currentNumber;
+          selectedContainer.append(numberSelected);
+
+          const allNumberContainers = document.querySelectorAll(".divAllNumbers .divnumber");
+
+          allNumberContainers.forEach((container) => {
+            const containerNumber = container.querySelector("p").textContent;
+            if (containerNumber === currentNumber) {
+              container.classList.add("selected");
+            }
+          });
+
+          i++;
+          processNextNumber(); // Llamada recursiva para el siguiente número
+        } else {
+          resolve("Juego completado");
+        }
+      };
+
+      processNextNumber(); // Iniciar el proceso para el primer número
+    } else {
+      reject("Contenedor no encontrado");
+    }
+  });
 };
 
 export const printAllNumbers = () => {
-    const appContainer = document.querySelector("#bingo");
+  const appContainer = document.querySelector("#bingo");
 
-    const divAllNumbers = document.createElement("div");
-    divAllNumbers.className = "divAllNumbers"
+  const divAllNumbers = document.createElement("div");
+  divAllNumbers.className = "divAllNumbers";
 
-    const selected = document.querySelector("selected")
+  for (let i = 0; i < bingoNumbers.length; i++) {
+    const divnumber = document.createElement("div");
+    const numberp = document.createElement("p");
 
-    for (let i = 0; i < bingoNumbers.length; i++) {
-        const divnumber = document.createElement("div");
-        const numberp = document.createElement("p");
+    numberp.textContent = bingoNumbers[i];
 
-        numberp.textContent = bingoNumbers[i]
-        
+    divnumber.className = "divnumber";
+    divnumber.append(numberp);
+    divAllNumbers.append(divnumber);
+  }
 
-        divnumber.className = "divnumber"
-        divnumber.append(numberp);
-        divAllNumbers.append(divnumber)
-        
-    }
- 
-
-    appContainer.append(divAllNumbers);
-}
+  appContainer.append(divAllNumbers);
+};
 
 export const printButtonPuse = () => {
-    const appContainer = document.querySelector("#bingo");
+  const appContainer = document.querySelector("#bingo");
 
-    const divPauseButton = document.createElement("div");
-    const pauseButton = document.createElement("button");
+  const divPauseButton = document.createElement("div");
+  const pauseButton = document.createElement("button");
 
-    divPauseButton.className = "divPauseButton"
-    pauseButton.textContent = "PAUSAR JUEGO";
+  divPauseButton.className = "divPauseButton";
+  pauseButton.textContent = "PAUSAR JUEGO";
 
-    pauseButton.addEventListener("click", () => {
-        togglePause()
-    })
+  pauseButton.addEventListener("click", () => {
+    togglePause();
+    document.querySelector("#containerGames").classList.toggle("pausa")
+  });
 
-
-    divPauseButton.append(pauseButton);
-    appContainer.append(divPauseButton);
-}
-
+  divPauseButton.append(pauseButton);
+  appContainer.append(divPauseButton);
+};
 
 export const printRestartButton = () => {
+  const divButton = document.querySelector(".divPauseButton");
+  const restartButton = document.createElement("button");
 
-    const divButton = document.querySelector(".divPauseButton");
-    const restartButton = document.createElement("button");
+  restartButton.textContent = "REINICIAR JUEGO";
 
-    restartButton.textContent = "REINICIAR JUEGO";
+  restartButton.addEventListener("click", () => {
+    if (paused) {
+      paused = !paused
+      resetGame()
+    } else {
+      resetGame()
+    }
+  });
 
-    restartButton.addEventListener("click", () => {
-    document.querySelector("#bingo").innerHTML = ""
-    location.reload()
-    });
+  divButton.append(restartButton);
+};
 
-
-    divButton.append(restartButton)
-}
