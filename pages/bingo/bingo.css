@@ -128,11 +128,7 @@
     cursor: pointer;
 }
 
-@media screen and (min-width: 240px) and (max-width: 298px) {
-    .divAllNumbers {
-        height: 712svh;
-    }
-}
+
 
 @media screen and (max-width: 299px) { 
     .divPauseButton > button {
@@ -210,33 +206,6 @@
         font-size: 1em;
         padding: var(--b-padding-xs);
     }
-
-}
-
-@media screen and (min-width: 580px) and (max-width: 849px) {
-    .divPauseButton > button {
-        font-size: 1em;
-        padding: var(--b-padding-xs);
-    }
-}
-
-
-
-@media screen and (min-width: 320px) and (max-width: 419px) {
-    .divAllNumbers {
-        height: 475svh;
-    }
-}
-
-
-@media screen and (min-width: 420px) and (max-width: 519px) {
-    .divAllNumbers {
-        height: 370svh;
-    }
-}
-
-
-@media screen and (min-width: 490px) and (max-width: 579px) {
     .divAllNumbers {
         height: 70svh;
         grid-template-columns: repeat(auto-fit, 30px);
@@ -245,14 +214,18 @@
         justify-content: space-evenly;
         padding: 0 var(--b-padding-m);
     }
-
     .divnumber > p {
         font-size: 0.9em;
     }
+
 }
 
-
 @media screen and (min-width: 580px) and (max-width: 849px) {
+    .divPauseButton > button {
+        font-size: 1em;
+        padding: var(--b-padding-xs);
+    }
+
     .divAllNumbers {
         height: 70svh;
         grid-template-columns: repeat(auto-fit, 35px);
@@ -266,6 +239,8 @@
         font-size: 1em;
     }
 }
+
+
 
 @media screen and (min-width: 850px) and (max-width: 1199px) {
     .divAllNumbers {
