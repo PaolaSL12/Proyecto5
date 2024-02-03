@@ -137,7 +137,6 @@ export const printStartButton = () => {
       divStartButton.className = "none";
      
       printSelectedNumber();
-      SelectedNumber()
       printAllNumbers();
       printButtonPuse();
       printRestartButton();
@@ -158,7 +157,7 @@ export const printStartButton = () => {
     divSelectedNumber.className = "divSelectedNumber";
     divNumber.className = "divNumber"
 
-    SelectedNumber()
+    SelectedNumber(divNumber)
 
     divNumber.append(numberSelected);
     divSelectedNumber.append(divNumber);
@@ -181,22 +180,21 @@ export function resetGame() {
     if (bingoContainer) {
       bingoContainer.innerHTML = ""; // Limpia el contenido del contenedor
       printSelectedNumber();
-      SelectedNumber();
       printAllNumbers();
       printButtonPuse();
       printRestartButton();
       reset = false;
       clearInterval(intervalId); // Limpia el intervalo después de reiniciar
     }
-  }, 1000);
+  }, 2000);
 }
 
-export const SelectedNumber = () => {
+export const SelectedNumber = (cont) => {
   return new Promise((resolve, reject) => {
-    const selectedContainer = document.querySelector(".divNumber");
     const synth = window.speechSynthesis;
 
-    if (selectedContainer) {
+    if (cont) {
+      console.log("dentro");
       const randomNumbers = generateRandomNumbers();
       const delay = 2500;
 
@@ -215,7 +213,7 @@ export const SelectedNumber = () => {
             return;
           }
 
-          selectedContainer.innerHTML = "";
+          cont.innerHTML = "";
 
           const numberSelected = document.createElement("p");
           const currentNumber = bingoNumbers[randomNumbers[i]];
@@ -224,7 +222,7 @@ export const SelectedNumber = () => {
           synth.speak(utterThis);
 
           numberSelected.textContent = currentNumber;
-          selectedContainer.append(numberSelected);
+          cont.append(numberSelected);
 
           const allNumberContainers = document.querySelectorAll(".divAllNumbers .divnumber");
 
@@ -236,18 +234,20 @@ export const SelectedNumber = () => {
           });
 
           i++;
-          processNextNumber(); // Llamada recursiva para el siguiente número
+          processNextNumber();
         } else {
           resolve("Juego completado");
         }
       };
 
-      processNextNumber(); // Iniciar el proceso para el primer número
+      processNextNumber();
     } else {
       reject("Contenedor no encontrado");
     }
   });
 };
+
+
 
 export const printAllNumbers = () => {
   const appContainer = document.querySelector("#bingo");
